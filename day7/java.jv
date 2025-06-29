@@ -1,0 +1,109 @@
+Class7 THREAD
+                                                          ----------------
+
+ThreadClass and RnningClass runs simultaneously
+------------------------------------------------
+thread class
+------------
+package thread;
+
+public class ThreadClass extends Thread{
+        @Override
+	public void run() {
+		for(int i=0;i<100;i++){
+			System.out.println(i);
+		}
+	}
+	
+}
+
+running class
+--------------
+package thread;
+
+public class RunningClass {
+ 
+	public static void main(String[] args) {
+		ThreadClass tc = new ThreadClass();
+		Thread tc1 = new Thread(tc);
+		tc.start();
+		for(int i=10000;i<1100;i++){
+			System.out.println(i);
+		}
+		
+	}
+	}
+                            project structure (main->controller->modal->service->repository)
+      
+     CONTROLLER   
+------------------------
+
+
+package Controller;
+
+import java.util.Scanner;
+
+public class CustomerController {
+	Scanner sc = new Scanner(System.in);
+	boolean isAct=true;
+	public void customerControl() {
+		 
+		while(isAct) {
+		System.out.println("Hii,welcome to our shop");
+		System.out.println("Enter your choice:");
+		System.out.println("1.Add New");
+		System.out.println("2.Existing customer");
+		System.out.println("3.Update my account");
+		System.out.println("4.Remove my account");
+		System.out.println("5.exit");
+		 
+		int choice = sc.nextInt();
+		switch (choice) {
+		case 1:
+			System.out.println("Welcome Enter Your Details:");
+			break;
+		case 2:
+			System.out.println("Welcome,your details:");
+			break;
+		case 3:
+			System.out.println("Welcome");
+			break;
+		case 4:
+			System.out.println("Are you sure?");
+			char ch = sc.next().toLowerCase().charAt(0);
+			if(ch=='y') {
+				System.out.println("Thank you visit again");
+				isAct=false;
+				break;
+			}
+			break;
+		case 5:
+			System.out.println("Are you sure?");
+			char ch1 = sc.next().toLowerCase().charAt(0);
+			if(ch1=='y') {
+				System.out.println("Thank you visit again");
+				isAct=false;
+				break;
+			}
+		default:
+			
+			System.out.println("Invalid input");
+			break;
+		}
+		
+	}
+		sc.close();
+		}
+}
+  
+
+Main
+--------
+import Controller.CustomerController;
+public class Main {
+	public static void main(String[] args) {
+	  CustomerController custom = new CustomerController();
+	  custom.customerControl();
+	}
+
+}
