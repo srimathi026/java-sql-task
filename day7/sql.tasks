@@ -1,0 +1,168 @@
+mysql> use mydatab;
+Database changed
+mysql> select * from student_profile;
++-----------+----------+------------+------------+
+| stu_regno | stu_name | stu_dob    | department |
++-----------+----------+------------+------------+
+|         1 | sasmitha | 2005-09-19 | IT         |
+|         2 | reha     | 2005-02-20 | IT         |
+|         3 | sana     | 2004-07-20 | IT         |
+|         4 | jan      | 2004-04-17 | CT         |
+|         5 | dhara    | 2006-02-19 | CS         |
++-----------+----------+------------+------------+
+5 rows in set (0.01 sec)
+
+mysql> alter table student_profile add column course varchar(20);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update student details set course='web development' where stu_regno=1;
+ERROR 1146 (42S02): Table 'mydatab.student' doesn't exist
+mysql> update student_profile details set course='web development' where stu_regno=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student_profile details set course='fullstack' where stu_regno=2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student_profile details set course='maya' where stu_regno=3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student_profile details set course='ims' where stu_regno=4;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student_profile details set course='cybersecurity' where stu_regno=5;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+mysql> select * from student_profile;
++-----------+----------+------------+------------+-----------------+
+| stu_regno | stu_name | stu_dob    | department | course          |
++-----------+----------+------------+------------+-----------------+
+|         1 | sasmitha | 2005-09-19 | IT         | web development |
+|         2 | reha     | 2005-02-20 | IT         | fullstack       |
+|         3 | sana     | 2004-07-20 | IT         | maya            |
+|         4 | jan      | 2004-04-17 | CT         | ims             |
+|         5 | dhara    | 2006-02-19 | CS         | cybersecurity   |
++-----------+----------+------------+------------+-----------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table student_profile add column fees;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+mysql> alter table student_profile add column fees int;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update student_profile details set fees=2000 where stu_regno=5;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student_profile details set fees=2500 where stu_regno=4;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student_profile details set fees=2500 where stu_regno=3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student_profile details set fees=3000 where stu_regno=2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student_profile details set fees=3000 where stu_regno=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student_profile;
++-----------+----------+------------+------------+-----------------+------+
+| stu_regno | stu_name | stu_dob    | department | course          | fees |
++-----------+----------+------------+------------+-----------------+------+
+|         1 | sasmitha | 2005-09-19 | IT         | web development | 3000 |
+|         2 | reha     | 2005-02-20 | IT         | fullstack       | 3000 |
+|         3 | sana     | 2004-07-20 | IT         | maya            | 2500 |
+|         4 | jan      | 2004-04-17 | CT         | ims             | 2500 |
+|         5 | dhara    | 2006-02-19 | CS         | cybersecurity   | 2000 |
++-----------+----------+------------+------------+-----------------+------+
+5 rows in set (0.00 sec)
+
+mysql> tee d:\2326ja44_day3.txt
+Logging to file 'd:\2326ja44_day3.txt'
+mysql> create table book_details(
+    -> book_name varchar(20),
+    -> no_of_books int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 3
+mysql> create table library(
+    -> books_available varchar(20),
+    -> visitors varchar(20),
+    -> books_cost int);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into library values('java',sasmitha,200);
+ERROR 1054 (42S22): Unknown column 'sasmitha' in 'field list'
+mysql> insert into library values('java','sasmitha',200);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into library values('python','reha',400);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from library;
++-----------------+----------+------------+
+| books_available | visitors | books_cost |
++-----------------+----------+------------+
+| java            | sasmitha |        200 |
+| python          | reha     |        400 |
++-----------------+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table library drop column visitors;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from library;
++-----------------+------------+
+| books_available | books_cost |
++-----------------+------------+
+| java            |        200 |
+| python          |        400 |
++-----------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into library values('sql',400);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from library;
++-----------------+------------+
+| books_available | books_cost |
++-----------------+------------+
+| java            |        200 |
+| python          |        400 |
+| sql             |        400 |
++-----------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> create table visitors(
+    -> visitor_name varchar(50),
+    -> entry_time float,
+    -> exit_time float);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into visitors values('sasmi',1.30,2.30);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into visitors values('sri',2.30,3.30);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into visitors values('reha',2.30,3.30);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from visitors;
++--------------+------------+-----------+
+| visitor_name | entry_time | exit_time |
++--------------+------------+-----------+
+| sasmi        |        1.3 |       2.3 |
+| sri          |        2.3 |       3.3 |
+| reha         |        2.3 |       3.3 |
++--------------+------------+-----------+
+3 rows in set (0.00 sec)
